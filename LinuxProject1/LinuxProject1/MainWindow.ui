@@ -6,38 +6,51 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>405</width>
+    <height>283</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>LinuxProject1</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="pushButton_AutomatiskTracking">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>120</y>
-      <width>75</width>
-      <height>23</height>
+      <x>270</x>
+      <y>110</y>
+      <width>120</width>
+      <height>60</height>
      </rect>
     </property>
     <property name="text">
-     <string>Press me</string>
+     <string>Automatisk Tracking</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="pushButton_Selftest">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>120</y>
-      <width>75</width>
-      <height>23</height>
+      <x>10</x>
+      <y>110</y>
+      <width>120</width>
+      <height>60</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Self Test</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_ManuelStyring">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>110</y>
+      <width>120</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Manuel Styring</string>
     </property>
    </widget>
   </widget>
@@ -46,7 +59,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>405</width>
      <height>21</height>
     </rect>
    </property>
@@ -65,39 +78,57 @@
  <resources/>
  <connections>
   <connection>
-   <sender>pushButton</sender>
+   <sender>pushButton_AutomatiskTracking</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>ButtonClicked()</slot>
+   <slot>ButtonClicked_AutoTracking()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>199</x>
-     <y>153</y>
+     <x>309</x>
+     <y>202</y>
     </hint>
     <hint type="destinationlabel">
-     <x>279</x>
-     <y>230</y>
+     <x>291</x>
+     <y>198</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_2</sender>
+   <sender>pushButton_ManuelStyring</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>Button2Clicked()</slot>
+   <slot>ButtonClicked_ManuelStyring()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>100</x>
-     <y>157</y>
+     <x>190</x>
+     <y>181</y>
     </hint>
     <hint type="destinationlabel">
-     <x>101</x>
-     <y>193</y>
+     <x>196</x>
+     <y>152</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_Selftest</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>ButtonClicked_Selftest()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>89</x>
+     <y>202</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>96</x>
+     <y>180</y>
     </hint>
    </hints>
   </connection>
  </connections>
  <slots>
-  <slot>Button2Clicked()</slot>
+  <slot>ButtonClicked_Selftest()</slot>
+  <slot>ButtonClicked_ManuelStyring()</slot>
+  <slot>ButtonClicked_AutoTracking()</slot>
  </slots>
 </ui>

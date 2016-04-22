@@ -15,10 +15,11 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-protected slots:
-    void ButtonClicked();
-	void Button2Clicked();
-
+	protected slots :
+		void ButtonClicked_Selftest();
+		void ButtonClicked_AutoTracking();
+		void ButtonClicked_ManuelStyring();
+	
 private:
     Ui::MainWindow *ui;
 };

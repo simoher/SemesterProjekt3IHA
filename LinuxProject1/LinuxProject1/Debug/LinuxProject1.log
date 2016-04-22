@@ -1,15 +1,18 @@
-﻿Build started 22-04-2016 15:01:01.
+﻿Build started 22-04-2016 23:23:43.
      1>Project "C:\Projekt\LinuxProject1\LinuxProject1\LinuxProject1.vcxproj" on node 2 (Build target(s)).
      1>Build:
          "C:\Program Files (x86)\Sysprogs\VisualGDB\VisualGDB.exe" /build "C:\Projekt\LinuxProject1\LinuxProject1\LinuxProject1.vcxproj" "/solution:C:\Projekt\LinuxProject1\LinuxProject1.sln" "/config:Debug" "/platform:Win32"
-         VisualGDB: Sending 1 updated source file to build machine...
+         VisualGDB: Sending 3 updated source files to build machine...
          VisualGDB: Run "qtchooser -run-tool=qmake -qt=qt5 LinuxProject1.pro CONFIGNAME=Debug" in directory "/tmp/VisualGDB/c/Projekt/LinuxProject1/LinuxProject1" on pi@84.238.25.163 (SSH)
          VisualGDB: Run "make " in directory "/tmp/VisualGDB/c/Projekt/LinuxProject1/LinuxProject1" on pi@84.238.25.163 (SSH)
          /usr/lib/arm-linux-gnueabihf/qt5/bin/uic MainWindow.ui -o Debug/ui_MainWindow.h
+         g++ -c -pipe -ggdb -g -Wall -W -D_REENTRANT -fPIE -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I. -isystem /usr/include/arm-linux-gnueabihf/qt5 -isystem /usr/include/arm-linux-gnueabihf/qt5/QtWidgets -isystem /usr/include/arm-linux-gnueabihf/qt5/QtGui -isystem /usr/include/arm-linux-gnueabihf/qt5/QtCore -IDebug -IDebug -o Debug/LinuxProject1.o LinuxProject1.cpp
          g++ -c -pipe -ggdb -g -Wall -W -D_REENTRANT -fPIE -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I. -isystem /usr/include/arm-linux-gnueabihf/qt5 -isystem /usr/include/arm-linux-gnueabihf/qt5/QtWidgets -isystem /usr/include/arm-linux-gnueabihf/qt5/QtGui -isystem /usr/include/arm-linux-gnueabihf/qt5/QtCore -IDebug -IDebug -o Debug/MainWindow.o MainWindow.cpp
+         /usr/lib/arm-linux-gnueabihf/qt5/bin/moc -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/tmp/VisualGDB/c/Projekt/LinuxProject1/LinuxProject1 -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtWidgets -I/usr/include/arm-linux-gnueabihf/qt5/QtGui -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I/usr/include/c++/4.9 -I/usr/include/arm-linux-gnueabihf/c++/4.9 -I/usr/include/c++/4.9/backward -I/usr/lib/gcc/arm-linux-gnueabihf/4.9/include -I/usr/local/include -I/usr/lib/gcc/arm-linux-gnueabihf/4.9/include-fixed -I/usr/include/arm-linux-gnueabihf -I/usr/include MainWindow.h -o Debug/moc_MainWindow.cpp
+         g++ -c -pipe -ggdb -g -Wall -W -D_REENTRANT -fPIE -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I. -isystem /usr/include/arm-linux-gnueabihf/qt5 -isystem /usr/include/arm-linux-gnueabihf/qt5/QtWidgets -isystem /usr/include/arm-linux-gnueabihf/qt5/QtGui -isystem /usr/include/arm-linux-gnueabihf/qt5/QtCore -IDebug -IDebug -o Debug/moc_MainWindow.o Debug/moc_MainWindow.cpp
          g++  -o Debug/LinuxProject1 Debug/LinuxProject1.o Debug/MainWindow.o Debug/moc_MainWindow.o   -lQt5Widgets -lQt5Gui -lQt5Core -lGLESv2 -lpthread 
      1>Done Building Project "C:\Projekt\LinuxProject1\LinuxProject1\LinuxProject1.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:07.21
+Time Elapsed 00:00:14.11
