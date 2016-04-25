@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include <QMessageBox>
+#include <QLabel>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -17,10 +18,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::ButtonClicked_Selftest()
 {
-    QMessageBox msgBox;
-    msgBox.setText("Hello, World!");
-    msgBox.setWindowTitle("VisualGDB Qt Demo");
-    msgBox.exec();
+	// sådan sættes text i label
+	ui->label_dynamic->setText("Swaggalidoodly");
 }
 
 //Der skal sættes slot's også videre inde i QT designeren, så kan man rename slottet og derefter gøre så man kan fortælle den hvad den skal gøre ved hver knap. 

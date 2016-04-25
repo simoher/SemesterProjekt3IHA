@@ -71,6 +71,7 @@
     <None Include="release.pro" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="buttonFunctions.h" />
     <ClInclude Include="MainWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

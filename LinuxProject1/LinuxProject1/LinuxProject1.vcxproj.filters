@@ -42,5 +42,8 @@
     <ClInclude Include="MainWindow.h">
       <Filter>Header files</Filter>
     </ClInclude>
+    <ClInclude Include="buttonFunctions.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
