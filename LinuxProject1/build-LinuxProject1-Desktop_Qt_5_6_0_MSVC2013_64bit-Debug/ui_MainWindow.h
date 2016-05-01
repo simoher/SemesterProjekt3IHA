@@ -44,6 +44,8 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->resize(405, 283);
+        QIcon icon(QIcon::fromTheme(QStringLiteral("icon")));
+        MainWindow->setWindowIcon(icon);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         pushButton_AutomatiskTracking = new QPushButton(centralWidget);
@@ -88,7 +90,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "LinuxProject1", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "G.U.N.S.H.O.W", 0));
         pushButton_AutomatiskTracking->setText(QApplication::translate("MainWindow", "Automatisk Tracking", 0));
         pushButton_Selftest->setText(QApplication::translate("MainWindow", "Self Test", 0));
         pushButton_ManuelStyring->setText(QApplication::translate("MainWindow", "Manuel Styring", 0));

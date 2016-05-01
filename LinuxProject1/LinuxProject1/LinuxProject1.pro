@@ -11,10 +11,12 @@ TEMPLATE = app
 
 #By default the following file lists are updated automatically by VisualGDB.
 
-SOURCES   += LinuxProject1.cpp MainWindow.cpp
-HEADERS   += MainWindow.h
+SOURCES   += LinuxProject1.cpp MainWindow.cpp \
+    statustextupdater.cpp
+HEADERS   += MainWindow.h \
+    statustextupdater.h
 FORMS     += MainWindow.ui
-RESOURCES += 
+RESOURCES +=  
 
 include($$lower($$join(CONFIGNAME,,,.pro)))
 

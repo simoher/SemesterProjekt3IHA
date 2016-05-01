@@ -11,7 +11,10 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>LinuxProject1</string>
+   <string>G.U.N.S.H.O.W</string>
+  </property>
+  <property name="windowIcon">
+   <iconset theme="icon"/>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="pushButton_AutomatiskTracking">
