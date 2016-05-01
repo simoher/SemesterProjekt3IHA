@@ -12,7 +12,7 @@ TEMPLATE = app
 #By default the following file lists are updated automatically by VisualGDB.
 
 SOURCES   += LinuxProject1.cpp MainWindow.cpp
-HEADERS   += buttonFunctions.h MainWindow.h
+HEADERS   += MainWindow.h
 FORMS     += MainWindow.ui
 RESOURCES += 
 
