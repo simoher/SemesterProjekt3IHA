@@ -13,10 +13,19 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+
+    //sætter billeder på knapper og det's lige. OBS på knapper kan det give et halv dårligt resultat med scaling.
+    // brug evt.  ------  border-image: url(/url/to/image);   ------ i stylesheet i stedet.
+    //QPixmap selftest_icon(":/icon-self-test.png");
+    //QIcon selftest_ButtonIcon(selftest_icon);
+    //ui->pushButton_Selftest->setIcon(selftest_ButtonIcon);
+    //ui->pushButton_Selftest->setIconSize(selftest_icon.rect().size());
+
     //sætter status vindue til Read Only
     ui->textEdit->setReadOnly(true);
+
     //sætter egenskaber for message output området.
-    ui->textEdit->setStyleSheet("QTextEdit { background-color: transparent; border: none;}");
+    ui->textEdit->setStyleSheet("QTextEdit { background-color: transparent;}");
     ui->textEdit->setTextColor("green");
 }
 

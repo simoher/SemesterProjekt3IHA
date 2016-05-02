@@ -43,35 +43,64 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(405, 283);
-        QIcon icon(QIcon::fromTheme(QStringLiteral("icon")));
+        MainWindow->resize(1149, 763);
+        QIcon icon;
+        QString iconThemeName = QStringLiteral("icon");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon.addFile(QStringLiteral("."), QSize(), QIcon::Normal, QIcon::Off);
+        }
         MainWindow->setWindowIcon(icon);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         pushButton_AutomatiskTracking = new QPushButton(centralWidget);
         pushButton_AutomatiskTracking->setObjectName(QStringLiteral("pushButton_AutomatiskTracking"));
-        pushButton_AutomatiskTracking->setGeometry(QRect(270, 160, 120, 60));
+        pushButton_AutomatiskTracking->setGeometry(QRect(800, 440, 250, 160));
+        QFont font;
+        font.setPointSize(20);
+        pushButton_AutomatiskTracking->setFont(font);
+        pushButton_AutomatiskTracking->setStyleSheet(QStringLiteral("border-image: url(:/icon-automatisk-tracking.PNG);"));
         pushButton_Selftest = new QPushButton(centralWidget);
         pushButton_Selftest->setObjectName(QStringLiteral("pushButton_Selftest"));
-        pushButton_Selftest->setGeometry(QRect(10, 160, 120, 60));
+        pushButton_Selftest->setGeometry(QRect(100, 440, 250, 160));
+        pushButton_Selftest->setFont(font);
+        pushButton_Selftest->setStyleSheet(QLatin1String("border-image: url(:/icon-self-test.png);\n"
+""));
         pushButton_ManuelStyring = new QPushButton(centralWidget);
         pushButton_ManuelStyring->setObjectName(QStringLiteral("pushButton_ManuelStyring"));
-        pushButton_ManuelStyring->setGeometry(QRect(140, 160, 120, 60));
+        pushButton_ManuelStyring->setGeometry(QRect(450, 440, 250, 160));
+        pushButton_ManuelStyring->setFont(font);
+        pushButton_ManuelStyring->setStyleSheet(QStringLiteral("border-image: url(:/icon-manuel-styring.PNG);"));
         label_nondynamic = new QLabel(centralWidget);
         label_nondynamic->setObjectName(QStringLiteral("label_nondynamic"));
-        label_nondynamic->setGeometry(QRect(290, 10, 101, 20));
+        label_nondynamic->setGeometry(QRect(810, 50, 240, 71));
+        QFont font1;
+        font1.setFamily(QStringLiteral("Cambria"));
+        font1.setPointSize(24);
+        label_nondynamic->setFont(font1);
+        label_nondynamic->setStyleSheet(QStringLiteral("color: rgb(141, 141, 141)"));
+        label_nondynamic->setScaledContents(false);
         label_dynamic = new QLabel(centralWidget);
         label_dynamic->setObjectName(QStringLiteral("label_dynamic"));
-        label_dynamic->setGeometry(QRect(100, 130, 161, 20));
+        label_dynamic->setGeometry(QRect(340, 240, 161, 20));
         label_dynamic->setLayoutDirection(Qt::LeftToRight);
         label_dynamic->setAutoFillBackground(false);
         textEdit = new QTextEdit(centralWidget);
         textEdit->setObjectName(QStringLiteral("textEdit"));
-        textEdit->setGeometry(QRect(270, 29, 120, 121));
+        textEdit->setGeometry(QRect(800, 120, 261, 281));
+        textEdit->setFont(font);
+        textEdit->setStyleSheet(QStringLiteral("border-image: url();"));
         MainWindow->setCentralWidget(centralWidget);
+        pushButton_AutomatiskTracking->raise();
+        pushButton_ManuelStyring->raise();
+        label_nondynamic->raise();
+        label_dynamic->raise();
+        textEdit->raise();
+        pushButton_Selftest->raise();
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 405, 21));
+        menuBar->setGeometry(QRect(0, 0, 1149, 21));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -91,9 +120,9 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "G.U.N.S.H.O.W", 0));
-        pushButton_AutomatiskTracking->setText(QApplication::translate("MainWindow", "Automatisk Tracking", 0));
-        pushButton_Selftest->setText(QApplication::translate("MainWindow", "Self Test", 0));
-        pushButton_ManuelStyring->setText(QApplication::translate("MainWindow", "Manuel Styring", 0));
+        pushButton_AutomatiskTracking->setText(QString());
+        pushButton_Selftest->setText(QString());
+        pushButton_ManuelStyring->setText(QString());
         label_nondynamic->setText(QApplication::translate("MainWindow", "Status Messages:", 0));
         label_dynamic->setText(QApplication::translate("MainWindow", "Dynamic Label", 0));
     } // retranslateUi

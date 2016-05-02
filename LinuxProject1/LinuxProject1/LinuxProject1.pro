@@ -16,7 +16,8 @@ SOURCES   += LinuxProject1.cpp MainWindow.cpp \
 HEADERS   += MainWindow.h \
     statustextupdater.h
 FORMS     += MainWindow.ui
-RESOURCES +=  
+RESOURCES += \  
+    images.qrc
 
 include($$lower($$join(CONFIGNAME,,,.pro)))
 
