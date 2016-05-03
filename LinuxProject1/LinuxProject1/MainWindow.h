@@ -15,6 +15,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+
+
 	protected slots :
 		void ButtonClicked_Selftest();
 		void ButtonClicked_AutoTracking();

@@ -21,7 +21,7 @@
    <widget class="QPushButton" name="pushButton_AutomatiskTracking">
     <property name="geometry">
      <rect>
-      <x>800</x>
+      <x>780</x>
       <y>440</y>
       <width>250</width>
       <height>160</height>
@@ -42,7 +42,7 @@
    <widget class="QPushButton" name="pushButton_Selftest">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>110</x>
       <y>440</y>
       <width>250</width>
       <height>160</height>
@@ -64,7 +64,7 @@
    <widget class="QPushButton" name="pushButton_ManuelStyring">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>420</x>
       <y>440</y>
       <width>250</width>
       <height>160</height>
@@ -110,10 +110,10 @@
    <widget class="QLabel" name="label_dynamic">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>240</y>
-      <width>161</width>
-      <height>20</height>
+      <x>160</x>
+      <y>220</y>
+      <width>521</width>
+      <height>111</height>
      </rect>
     </property>
     <property name="layoutDirection">
@@ -137,19 +137,103 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>20</pointsize>
+      <family>Cambria</family>
+      <pointsize>24</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
      <string notr="true">border-image: url();</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>550</y>
+      <width>161</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Cambria</family>
+      <pointsize>24</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(130, 130, 130)
+</string>
+    </property>
+    <property name="text">
+     <string>Self Test</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>550</y>
+      <width>231</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Cambria</family>
+      <pointsize>24</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(130, 130, 130)
+</string>
+    </property>
+    <property name="text">
+     <string>Manuel Styring</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>740</x>
+      <y>550</y>
+      <width>331</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Cambria</family>
+      <pointsize>24</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(130, 130, 130)
+</string>
+    </property>
+    <property name="text">
+     <string>Automatisk Tracking</string>
+    </property>
+   </widget>
+   <zorder>pushButton_Selftest</zorder>
    <zorder>pushButton_AutomatiskTracking</zorder>
    <zorder>pushButton_ManuelStyring</zorder>
    <zorder>label_nondynamic</zorder>
    <zorder>label_dynamic</zorder>
    <zorder>textEdit</zorder>
-   <zorder>pushButton_Selftest</zorder>
+   <zorder>pushButton</zorder>
+   <zorder>pushButton_2</zorder>
+   <zorder>pushButton_3</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -181,12 +265,12 @@
    <slot>ButtonClicked_AutoTracking()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>309</x>
-     <y>202</y>
+     <x>780</x>
+     <y>473</y>
     </hint>
     <hint type="destinationlabel">
-     <x>291</x>
-     <y>198</y>
+     <x>807</x>
+     <y>453</y>
     </hint>
    </hints>
   </connection>
@@ -197,12 +281,12 @@
    <slot>ButtonClicked_ManuelStyring()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>190</x>
-     <y>181</y>
+     <x>420</x>
+     <y>473</y>
     </hint>
     <hint type="destinationlabel">
-     <x>196</x>
-     <y>152</y>
+     <x>436</x>
+     <y>449</y>
     </hint>
    </hints>
   </connection>
@@ -213,12 +297,60 @@
    <slot>ButtonClicked_Selftest()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>89</x>
-     <y>202</y>
+     <x>110</x>
+     <y>473</y>
     </hint>
     <hint type="destinationlabel">
-     <x>96</x>
-     <y>180</y>
+     <x>145</x>
+     <y>415</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>ButtonClicked_Selftest()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>609</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>174</x>
+     <y>431</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>ButtonClicked_ManuelStyring()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>516</x>
+     <y>602</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>541</x>
+     <y>425</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>ButtonClicked_AutoTracking()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>900</x>
+     <y>617</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>996</x>
+     <y>460</y>
     </hint>
    </hints>
   </connection>

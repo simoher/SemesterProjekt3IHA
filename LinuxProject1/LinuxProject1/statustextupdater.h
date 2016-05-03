@@ -7,7 +7,9 @@ class statusTextUpdater
 {
 public:
     statusTextUpdater();
-    QString getMessage();
+    QString getMsgOk();
+    QString getMsgNotOk();
+
 private:
     QString i2cOK = "I2C OK";
     QString i2cNotOK = "I2C NOT OK";

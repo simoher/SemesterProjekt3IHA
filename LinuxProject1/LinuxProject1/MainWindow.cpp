@@ -40,7 +40,14 @@ void MainWindow::ButtonClicked_Selftest()
     ui->label_dynamic->setText("Jeg opdatere den label der hedder dynamic label!");
 
     //text output i QtextEdit
-    ui->textEdit->append(updateObjekt.getMessage());
+
+    // if OK
+    ui->textEdit->setTextColor("green");
+    ui->textEdit->append(updateObjekt.getMsgOk());
+
+    // if NOT OK
+    // ui->textEdit->setTextColor("red");
+    // ui->textEdit->append(updateObjekt.getMsgNotOk());
 
 }
 
@@ -48,10 +55,15 @@ void MainWindow::ButtonClicked_Selftest()
 void MainWindow::ButtonClicked_AutoTracking()
 {
     // ui->textEdit->append(red);
-	QMessageBox msgBox;
-    msgBox.setText("Automatisk Styring Aktiveret!");
-    msgBox.setWindowTitle("Auto");
-	msgBox.exec();
+    //QMessageBox msgBox;
+    //msgBox.setText("Automatisk Styring Aktiveret!");
+    //msgBox.setWindowTitle("Auto");
+    //msgBox.exec();
+
+    ui->textEdit->setTextColor("red");
+    ui->textEdit->append(updateObjekt.getMsgNotOk());
+
+
 }
 
 void MainWindow::ButtonClicked_ManuelStyring()

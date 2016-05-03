@@ -1,3 +1,4 @@
+#include "MainWindow.h"
 #include "statustextupdater.h"
 
 statusTextUpdater::statusTextUpdater()
@@ -5,8 +6,14 @@ statusTextUpdater::statusTextUpdater()
 
 }
 
-QString statusTextUpdater::getMessage()
+QString statusTextUpdater::getMsgOk()
 {
-    //skal opdateres til at modtage parameter og vælge string ud fra det
+    return i2cOK;
+}
+
+
+QString statusTextUpdater::getMsgNotOk()
+{
     return i2cNotOK;
 }
+
