@@ -4,6 +4,8 @@
 #include <QLabel>
 #include <QTextEdit>
 #include <QtGui>
+#include <QTimer>
+#include <QDateTime>
 #include "statustextupdater.h"
 statusTextUpdater updateObjekt;
 
@@ -27,11 +29,34 @@ MainWindow::MainWindow(QWidget *parent) :
     //sætter egenskaber for message output området.
     ui->textEdit->setStyleSheet("QTextEdit { background-color: transparent;}");
     ui->textEdit->setTextColor("green");
+
+    // næste tre linjer sørger for at uret bliver opdateret hvert sekund, og er en timer
+    QTimer *tidsTimer  = new QTimer(this);
+    connect(tidsTimer, SIGNAL(timeout()),this,SLOT(showTime()));
+    tidsTimer->start();
+
+
 }
+
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::showTime()
+{
+    QTime time = QTime::currentTime();  //smider den nuværende tid ind i en variable
+    QString time_text = time.toString("hh:mm:ss");  // laver tiden om til en string og sætter en i en string variable
+
+    if ((time.second() % 2) == 0)
+    {
+        time_text[2] = ' ';  // får den til at blinke
+        time_text[5] = ' ';
+    }
+
+    ui->Digital_clock->setText(time_text); //Peger på den text label som skal vise tiden
+
 }
 
 void MainWindow::ButtonClicked_Selftest()

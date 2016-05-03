@@ -16,6 +16,8 @@ public:
     ~MainWindow();
 
 
+private slots:
+     void showTime();
 
 	protected slots :
 		void ButtonClicked_Selftest();

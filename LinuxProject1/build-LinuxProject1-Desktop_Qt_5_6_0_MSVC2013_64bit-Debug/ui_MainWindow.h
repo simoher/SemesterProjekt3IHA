@@ -38,6 +38,7 @@ public:
     QPushButton *pushButton;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
+    QLabel *Digital_clock;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -77,7 +78,7 @@ public:
         pushButton_ManuelStyring->setStyleSheet(QStringLiteral("border-image: url(:/icon-manuel-styring.PNG);"));
         label_nondynamic = new QLabel(centralWidget);
         label_nondynamic->setObjectName(QStringLiteral("label_nondynamic"));
-        label_nondynamic->setGeometry(QRect(810, 50, 240, 71));
+        label_nondynamic->setGeometry(QRect(770, 60, 240, 71));
         QFont font1;
         font1.setFamily(QStringLiteral("Cambria"));
         font1.setPointSize(24);
@@ -91,7 +92,7 @@ public:
         label_dynamic->setAutoFillBackground(false);
         textEdit = new QTextEdit(centralWidget);
         textEdit->setObjectName(QStringLiteral("textEdit"));
-        textEdit->setGeometry(QRect(800, 120, 261, 281));
+        textEdit->setGeometry(QRect(690, 120, 411, 281));
         QFont font2;
         font2.setFamily(QStringLiteral("Cambria"));
         font2.setPointSize(24);
@@ -120,6 +121,15 @@ public:
         pushButton_3->setStyleSheet(QLatin1String("background-color: rgba(255, 255, 255, 0);\n"
 "color: rgb(130, 130, 130)\n"
 ""));
+        Digital_clock = new QLabel(centralWidget);
+        Digital_clock->setObjectName(QStringLiteral("Digital_clock"));
+        Digital_clock->setGeometry(QRect(1040, 10, 151, 41));
+        QFont font3;
+        font3.setPointSize(16);
+        font3.setBold(true);
+        font3.setWeight(75);
+        Digital_clock->setFont(font3);
+        Digital_clock->setStyleSheet(QStringLiteral("color: rgb(130, 130, 130)"));
         MainWindow->setCentralWidget(centralWidget);
         pushButton_Selftest->raise();
         pushButton_AutomatiskTracking->raise();
@@ -130,6 +140,7 @@ public:
         pushButton->raise();
         pushButton_2->raise();
         pushButton_3->raise();
+        Digital_clock->raise();
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 1149, 21));
@@ -163,6 +174,10 @@ public:
         pushButton->setText(QApplication::translate("MainWindow", "Self Test", 0));
         pushButton_2->setText(QApplication::translate("MainWindow", "Manuel Styring", 0));
         pushButton_3->setText(QApplication::translate("MainWindow", "Automatisk Tracking", 0));
+#ifndef QT_NO_TOOLTIP
+        Digital_clock->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Ur</span></p></body></html>", 0));
+#endif // QT_NO_TOOLTIP
+        Digital_clock->setText(QApplication::translate("MainWindow", "KLOKKEN", 0));
     } // retranslateUi
 
 };
