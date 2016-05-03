@@ -12,10 +12,19 @@ TEMPLATE = app
 #By default the following file lists are updated automatically by VisualGDB.
 
 SOURCES   += LinuxProject1.cpp MainWindow.cpp \
-    statustextupdater.cpp
+    statustextupdater.cpp \
+    manuelstyring.cpp \
+    broadcastreceiver.cpp \
+    broadcastsender.cpp \
+    fifoqueue.cpp
 HEADERS   += MainWindow.h \
-    statustextupdater.h
-FORMS     += MainWindow.ui
+    statustextupdater.h \
+    manuelstyring.h \
+    broadcastreceiver.h \
+    broadcastsender.h \
+    fifoqueue.h
+FORMS     += MainWindow.ui \
+    manuelstyring.ui
 RESOURCES += \  
     images.qrc
 

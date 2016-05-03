@@ -1,12 +1,17 @@
-#include "MainWindow.h"
-#include "ui_MainWindow.h"
 #include <QMessageBox>
 #include <QLabel>
 #include <QTextEdit>
 #include <QtGui>
 #include <QTimer>
 #include <QDateTime>
+
+#include "MainWindow.h"
+#include "ui_MainWindow.h"
 #include "statustextupdater.h"
+#include "manuelstyring.h"
+#include "broadcastreceiver.h"
+#include "broadcastsender.h"
+#include "fifoqueue.h"
 statusTextUpdater updateObjekt;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -93,11 +98,17 @@ void MainWindow::ButtonClicked_AutoTracking()
 
 void MainWindow::ButtonClicked_ManuelStyring()
 {
+    manuelStyring manuelStyringwindow;
+    manuelStyringwindow.setModal(true);
+    manuelStyringwindow.setStyleSheet("background-color: white");
+    manuelStyringwindow.setWindowTitle("Manuel Styring");
+    manuelStyringwindow.exec();
+
     // ui->textEdit->append(yellow);
-	QMessageBox msgBox;
-	msgBox.setText("Velkommen til Manuel Styring!");
-    msgBox.setWindowTitle("Manuel");
-	msgBox.exec();
+    //QMessageBox msgBox;
+    //msgBox.setText("Velkommen til Manuel Styring!");
+    //msgBox.setWindowTitle("Manuel");
+    //msgBox.exec();
 }
 
 
