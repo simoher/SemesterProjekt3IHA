@@ -7,6 +7,8 @@ namespace Ui {
 class manuelStyring;
 }
 
+class QUdpSocket;
+
 class manuelStyring : public QDialog
 {
     Q_OBJECT
@@ -21,6 +23,7 @@ private slots:
 
 private:
     Ui::manuelStyring *ui;
+    QUdpSocket *mSocket;
 };
 
 #endif // MANUELSTYRING_H

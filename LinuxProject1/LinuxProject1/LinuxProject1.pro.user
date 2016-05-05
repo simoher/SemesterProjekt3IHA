@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 3.6.1, 2016-05-05T11:09:46. -->
+<!-- Written by QtCreator 3.6.1, 2016-05-05T14:33:39. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -283,8 +283,8 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">LinuxProject1</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Morten Christensen/Desktop/Projekt 3/LinuxProject1/LinuxProject1/LinuxProject1.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">LinuxProject12</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Morten Christensen/Desktop/SemesterProjekt3IHA/LinuxProject1/LinuxProject1/LinuxProject1.pro</value>
     <value type="bool" key="QmakeProjectManager.QmakeRunConfiguration.UseLibrarySearchPath">true</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">LinuxProject1.pro</value>
