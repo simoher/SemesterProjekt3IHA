@@ -217,6 +217,7 @@ Makefile: ..\LinuxProject1\LinuxProject1.pro C:\Qt\5.6\msvc2013_64\mkspecs\win32
 		C:\Qt\5.6\msvc2013_64\lib\qtmaind.prl \
 		C:\Qt\5.6\msvc2013_64\lib\Qt5Widgets.prl \
 		C:\Qt\5.6\msvc2013_64\lib\Qt5Gui.prl \
+		C:\Qt\5.6\msvc2013_64\lib\Qt5Network.prl \
 		C:\Qt\5.6\msvc2013_64\lib\Qt5Core.prl
 	$(QMAKE) -spec win32-msvc2013 "CONFIG+=debug" "CONFIG+=qml_debug" -o Makefile ..\LinuxProject1\LinuxProject1.pro
 C:\Qt\5.6\msvc2013_64\mkspecs\features\spec_pre.prf:
@@ -363,6 +364,7 @@ C:\Qt\5.6\msvc2013_64\mkspecs\features\lex.prf:
 C:\Qt\5.6\msvc2013_64\lib\qtmaind.prl:
 C:\Qt\5.6\msvc2013_64\lib\Qt5Widgets.prl:
 C:\Qt\5.6\msvc2013_64\lib\Qt5Gui.prl:
+C:\Qt\5.6\msvc2013_64\lib\Qt5Network.prl:
 C:\Qt\5.6\msvc2013_64\lib\Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -spec win32-msvc2013 "CONFIG+=debug" "CONFIG+=qml_debug" -o Makefile ..\LinuxProject1\LinuxProject1.pro

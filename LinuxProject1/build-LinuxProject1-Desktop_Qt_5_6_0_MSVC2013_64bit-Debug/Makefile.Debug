@@ -11,13 +11,13 @@ MAKEFILE      = Makefile.Debug
 
 CC            = cl
 CXX           = cl
-DEFINES       = -DUNICODE -DWIN32 -DWIN64 -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DUNICODE -DWIN32 -DWIN64 -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -nologo -Zc:wchar_t -FS -Zi -MDd -W3 /Fddebug\LinuxProject1.pdb $(DEFINES)
 CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zi -MDd -GR -W3 -w34100 -w34189 -w44996 -EHsc /Fddebug\LinuxProject1.pdb $(DEFINES)
-INCPATH       = -I..\LinuxProject1 -I. -IC:\Qt\5.6\msvc2013_64\include -IC:\Qt\5.6\msvc2013_64\include\QtWidgets -IC:\Qt\5.6\msvc2013_64\include\QtGui -IC:\Qt\5.6\msvc2013_64\include\QtANGLE -IC:\Qt\5.6\msvc2013_64\include\QtCore -Idebug -I. -IC:\Qt\5.6\msvc2013_64\mkspecs\win32-msvc2013 
+INCPATH       = -I..\LinuxProject1 -I. -IC:\Qt\5.6\msvc2013_64\include -IC:\Qt\5.6\msvc2013_64\include\QtWidgets -IC:\Qt\5.6\msvc2013_64\include\QtGui -IC:\Qt\5.6\msvc2013_64\include\QtANGLE -IC:\Qt\5.6\msvc2013_64\include\QtNetwork -IC:\Qt\5.6\msvc2013_64\include\QtCore -Idebug -I. -IC:\Qt\5.6\msvc2013_64\mkspecs\win32-msvc2013 
 LINKER        = link
 LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /DEBUG /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:C:\Qt\5.6\msvc2013_64\lib C:\Qt\5.6\msvc2013_64\lib\qtmaind.lib /LIBPATH:C:\utils\postgresql\pgsql\lib /LIBPATH:C:\utils\my_sql\my_sql\lib shell32.lib C:\Qt\5.6\msvc2013_64\lib\Qt5Widgetsd.lib C:\Qt\5.6\msvc2013_64\lib\Qt5Guid.lib C:\Qt\5.6\msvc2013_64\lib\Qt5Cored.lib 
+LIBS          = /LIBPATH:C:\Qt\5.6\msvc2013_64\lib C:\Qt\5.6\msvc2013_64\lib\qtmaind.lib /LIBPATH:C:\utils\postgresql\pgsql\lib /LIBPATH:C:\utils\my_sql\my_sql\lib shell32.lib C:\Qt\5.6\msvc2013_64\lib\Qt5Widgetsd.lib C:\Qt\5.6\msvc2013_64\lib\Qt5Guid.lib C:\Qt\5.6\msvc2013_64\lib\Qt5Networkd.lib C:\Qt\5.6\msvc2013_64\lib\Qt5Cored.lib 
 QMAKE         = C:\Qt\5.6\msvc2013_64\bin\qmake.exe
 IDC           = idc
 IDL           = midl
@@ -46,23 +46,27 @@ OBJECTS_DIR   = debug
 SOURCES       = ..\LinuxProject1\LinuxProject1.cpp \
 		..\LinuxProject1\MainWindow.cpp \
 		..\LinuxProject1\statustextupdater.cpp \
-		..\LinuxProject1\manuelstyring.cpp debug\qrc_images.cpp \
+		..\LinuxProject1\manuelstyring.cpp \
+		..\LinuxProject1\fifoqueue.cpp debug\qrc_images.cpp \
 		debug\moc_MainWindow.cpp \
 		debug\moc_manuelstyring.cpp
 OBJECTS       = debug\LinuxProject1.obj \
 		debug\MainWindow.obj \
 		debug\statustextupdater.obj \
 		debug\manuelstyring.obj \
+		debug\fifoqueue.obj \
 		debug\qrc_images.obj \
 		debug\moc_MainWindow.obj \
 		debug\moc_manuelstyring.obj
 
 DIST          =  ..\LinuxProject1\MainWindow.h \
 		..\LinuxProject1\statustextupdater.h \
-		..\LinuxProject1\manuelstyring.h ..\LinuxProject1\LinuxProject1.cpp \
+		..\LinuxProject1\manuelstyring.h \
+		..\LinuxProject1\fifoqueue.h ..\LinuxProject1\LinuxProject1.cpp \
 		..\LinuxProject1\MainWindow.cpp \
 		..\LinuxProject1\statustextupdater.cpp \
-		..\LinuxProject1\manuelstyring.cpp
+		..\LinuxProject1\manuelstyring.cpp \
+		..\LinuxProject1\fifoqueue.cpp
 QMAKE_TARGET  = LinuxProject1
 DESTDIR        = debug\ #avoid trailing-slash linebreak
 TARGET         = LinuxProject1.exe
@@ -148,10 +152,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) LinuxProject1.zip $(SOURCES) $(DIST) ..\LinuxProject1\LinuxProject1.pro C:\Qt\5.6\msvc2013_64\mkspecs\features\spec_pre.prf C:\Qt\5.6\msvc2013_64\mkspecs\common\angle.conf C:\Qt\5.6\msvc2013_64\mkspecs\common\msvc-base.conf C:\Qt\5.6\msvc2013_64\mkspecs\common\msvc-desktop.conf C:\Qt\5.6\msvc2013_64\mkspecs\qconfig.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dcore.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dcore_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dinput.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dinput_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dlogic.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dlogic_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dquick.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dquick_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dquickinput.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dquickinput_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dquickrender.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dquickrender_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3drender.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3drender_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_axbase.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_axserver.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_clucene_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_core.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_help.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_labscontrols_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_labstemplates_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_location.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_location_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_network.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_nfc.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_platformsupport_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_positioning.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_script.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_script_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_scripttools.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_scripttools_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_sensors.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_serialbus.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_serialbus_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_serialport.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webengine.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webengine_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webenginecore.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webenginecore_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webenginewidgets.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_websockets.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webview.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webview_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_winextras.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\features\qt_functions.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\qt_config.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\win32\qt_config.prf C:\Qt\5.6\msvc2013_64\mkspecs\win32-msvc2013\qmake.conf C:\Qt\5.6\msvc2013_64\mkspecs\features\spec_post.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\exclusive_builds.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\default_pre.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\win32\default_pre.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\resolve_config.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\default_post.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\build_pass.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\qml_debug.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\win32\rtti.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\precompile_header.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\warn_on.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\qt.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\resources.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\moc.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\win32\opengl.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\uic.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\win32\windows.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\testcase_targets.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\exceptions.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\yacc.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\lex.prf ..\LinuxProject1\LinuxProject1.pro ..\LinuxProject1\images.qrc C:\Qt\5.6\msvc2013_64\lib\qtmaind.prl C:\Qt\5.6\msvc2013_64\lib\Qt5Widgetsd.prl C:\Qt\5.6\msvc2013_64\lib\Qt5Guid.prl C:\Qt\5.6\msvc2013_64\lib\Qt5Cored.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
+	$(ZIP) LinuxProject1.zip $(SOURCES) $(DIST) ..\LinuxProject1\LinuxProject1.pro C:\Qt\5.6\msvc2013_64\mkspecs\features\spec_pre.prf C:\Qt\5.6\msvc2013_64\mkspecs\common\angle.conf C:\Qt\5.6\msvc2013_64\mkspecs\common\msvc-base.conf C:\Qt\5.6\msvc2013_64\mkspecs\common\msvc-desktop.conf C:\Qt\5.6\msvc2013_64\mkspecs\qconfig.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dcore.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dcore_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dinput.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dinput_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dlogic.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dlogic_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dquick.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dquick_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dquickinput.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dquickinput_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dquickrender.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3dquickrender_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3drender.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_3drender_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_axbase.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_axserver.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_clucene_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_core.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_help.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_labscontrols_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_labstemplates_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_location.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_location_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_network.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_nfc.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_platformsupport_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_positioning.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_script.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_script_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_scripttools.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_scripttools_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_sensors.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_serialbus.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_serialbus_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_serialport.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webengine.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webengine_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webenginecore.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webenginecore_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webenginewidgets.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_websockets.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webview.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_webview_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_winextras.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\5.6\msvc2013_64\mkspecs\features\qt_functions.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\qt_config.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\win32\qt_config.prf C:\Qt\5.6\msvc2013_64\mkspecs\win32-msvc2013\qmake.conf C:\Qt\5.6\msvc2013_64\mkspecs\features\spec_post.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\exclusive_builds.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\default_pre.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\win32\default_pre.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\resolve_config.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\default_post.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\build_pass.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\qml_debug.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\win32\rtti.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\precompile_header.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\warn_on.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\qt.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\resources.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\moc.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\win32\opengl.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\uic.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\win32\windows.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\testcase_targets.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\exceptions.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\yacc.prf C:\Qt\5.6\msvc2013_64\mkspecs\features\lex.prf ..\LinuxProject1\LinuxProject1.pro ..\LinuxProject1\images.qrc C:\Qt\5.6\msvc2013_64\lib\qtmaind.prl C:\Qt\5.6\msvc2013_64\lib\Qt5Widgetsd.prl C:\Qt\5.6\msvc2013_64\lib\Qt5Guid.prl C:\Qt\5.6\msvc2013_64\lib\Qt5Networkd.prl C:\Qt\5.6\msvc2013_64\lib\Qt5Cored.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\LinuxProject1.obj debug\MainWindow.obj debug\statustextupdater.obj debug\manuelstyring.obj debug\qrc_images.obj debug\moc_MainWindow.obj debug\moc_manuelstyring.obj
+	-$(DEL_FILE) debug\LinuxProject1.obj debug\MainWindow.obj debug\statustextupdater.obj debug\manuelstyring.obj debug\fifoqueue.obj debug\qrc_images.obj debug\moc_MainWindow.obj debug\moc_manuelstyring.obj
 	-$(DEL_FILE) debug\LinuxProject1.exp debug\LinuxProject1.ilk debug\LinuxProject1.idb
 
 distclean: clean 
@@ -288,7 +292,7 @@ debug\moc_MainWindow.cpp: C:\Qt\5.6\msvc2013_64\include\QtWidgets\QMainWindow \
 		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qtabwidget.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qicon.h \
 		..\LinuxProject1\MainWindow.h
-	C:\Qt\5.6\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.6/msvc2013_64/mkspecs/win32-msvc2013 -I"C:/Users/Morten Christensen/Desktop/Projekt 3/LinuxProject1/LinuxProject1" -IC:/Qt/5.6/msvc2013_64/include -IC:/Qt/5.6/msvc2013_64/include/QtWidgets -IC:/Qt/5.6/msvc2013_64/include/QtGui -IC:/Qt/5.6/msvc2013_64/include/QtANGLE -IC:/Qt/5.6/msvc2013_64/include/QtCore -I. ..\LinuxProject1\MainWindow.h -o debug\moc_MainWindow.cpp
+	C:\Qt\5.6\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.6/msvc2013_64/mkspecs/win32-msvc2013 -I"C:/Users/Morten Christensen/Desktop/Projekt 3/LinuxProject1/LinuxProject1" -IC:/Qt/5.6/msvc2013_64/include -IC:/Qt/5.6/msvc2013_64/include/QtWidgets -IC:/Qt/5.6/msvc2013_64/include/QtGui -IC:/Qt/5.6/msvc2013_64/include/QtANGLE -IC:/Qt/5.6/msvc2013_64/include/QtNetwork -IC:/Qt/5.6/msvc2013_64/include/QtCore -I. ..\LinuxProject1\MainWindow.h -o debug\moc_MainWindow.cpp
 
 debug\moc_manuelstyring.cpp: C:\Qt\5.6\msvc2013_64\include\QtWidgets\QDialog \
 		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qdialog.h \
@@ -396,7 +400,7 @@ debug\moc_manuelstyring.cpp: C:\Qt\5.6\msvc2013_64\include\QtWidgets\QDialog \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qvector2d.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qtouchdevice.h \
 		..\LinuxProject1\manuelstyring.h
-	C:\Qt\5.6\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.6/msvc2013_64/mkspecs/win32-msvc2013 -I"C:/Users/Morten Christensen/Desktop/Projekt 3/LinuxProject1/LinuxProject1" -IC:/Qt/5.6/msvc2013_64/include -IC:/Qt/5.6/msvc2013_64/include/QtWidgets -IC:/Qt/5.6/msvc2013_64/include/QtGui -IC:/Qt/5.6/msvc2013_64/include/QtANGLE -IC:/Qt/5.6/msvc2013_64/include/QtCore -I. ..\LinuxProject1\manuelstyring.h -o debug\moc_manuelstyring.cpp
+	C:\Qt\5.6\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.6/msvc2013_64/mkspecs/win32-msvc2013 -I"C:/Users/Morten Christensen/Desktop/Projekt 3/LinuxProject1/LinuxProject1" -IC:/Qt/5.6/msvc2013_64/include -IC:/Qt/5.6/msvc2013_64/include/QtWidgets -IC:/Qt/5.6/msvc2013_64/include/QtGui -IC:/Qt/5.6/msvc2013_64/include/QtANGLE -IC:/Qt/5.6/msvc2013_64/include/QtNetwork -IC:/Qt/5.6/msvc2013_64/include/QtCore -I. ..\LinuxProject1\manuelstyring.h -o debug\moc_manuelstyring.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -539,9 +543,9 @@ debug\LinuxProject1.obj: ..\LinuxProject1\LinuxProject1.cpp ../LinuxProject1/Mai
 		../LinuxProject1/statustextupdater.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\QString
 
-debug\MainWindow.obj: ..\LinuxProject1\MainWindow.cpp ../LinuxProject1/MainWindow.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QMainWindow \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qmainwindow.h \
+debug\MainWindow.obj: ..\LinuxProject1\MainWindow.cpp C:\Qt\5.6\msvc2013_64\include\QtWidgets\QMessageBox \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qmessagebox.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qdialog.h \
 		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qwidget.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qwindowdefs.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qglobal.h \
@@ -645,62 +649,17 @@ debug\MainWindow.obj: ..\LinuxProject1\MainWindow.cpp ../LinuxProject1/MainWindo
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qfiledevice.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qvector2d.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qtouchdevice.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qtabwidget.h \
-		C:\Qt\5.6\msvc2013_64\include\QtGui\qicon.h \
-		ui_MainWindow.h \
-		C:\Qt\5.6\msvc2013_64\include\QtCore\QVariant \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QAction \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qaction.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qactiongroup.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QApplication \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qapplication.h \
-		C:\Qt\5.6\msvc2013_64\include\QtCore\qcoreapplication.h \
-		C:\Qt\5.6\msvc2013_64\include\QtCore\qeventloop.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qdesktopwidget.h \
-		C:\Qt\5.6\msvc2013_64\include\QtGui\qguiapplication.h \
-		C:\Qt\5.6\msvc2013_64\include\QtGui\qinputmethod.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QButtonGroup \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qbuttongroup.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QHeaderView \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qheaderview.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qabstractitemview.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qabstractscrollarea.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qframe.h \
-		C:\Qt\5.6\msvc2013_64\include\QtCore\qabstractitemmodel.h \
-		C:\Qt\5.6\msvc2013_64\include\QtCore\qitemselectionmodel.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qabstractitemdelegate.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qstyleoption.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qabstractspinbox.h \
-		C:\Qt\5.6\msvc2013_64\include\QtGui\qvalidator.h \
-		C:\Qt\5.6\msvc2013_64\include\QtCore\qregularexpression.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qslider.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qabstractslider.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qstyle.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qtabbar.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qrubberband.h \
 		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QLabel \
 		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qlabel.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QMenuBar \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qmenubar.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qmenu.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QPushButton \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qpushbutton.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qabstractbutton.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QStatusBar \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qstatusbar.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qframe.h \
 		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QTextEdit \
 		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qtextedit.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qabstractscrollarea.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qtextdocument.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qtextoption.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qtextcursor.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qtextformat.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qpen.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QToolBar \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qtoolbar.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QWidget \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QMessageBox \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qmessagebox.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qdialog.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\QtGui \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\QtGuiDepends \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\QtCore \
@@ -736,8 +695,10 @@ debug\MainWindow.obj: ..\LinuxProject1\MainWindow.cpp ../LinuxProject1/MainWindo
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qtemporarydir.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\QScopedPointer \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qtemporaryfile.h \
+		C:\Qt\5.6\msvc2013_64\include\QtCore\qabstractitemmodel.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qabstractproxymodel.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qidentityproxymodel.h \
+		C:\Qt\5.6\msvc2013_64\include\QtCore\qitemselectionmodel.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qsortfilterproxymodel.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qstringlistmodel.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qjsonarray.h \
@@ -745,8 +706,10 @@ debug\MainWindow.obj: ..\LinuxProject1\MainWindow.cpp ../LinuxProject1/MainWindo
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qjsondocument.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qjsonobject.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qabstracteventdispatcher.h \
+		C:\Qt\5.6\msvc2013_64\include\QtCore\qeventloop.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qabstractnativeeventfilter.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qbasictimer.h \
+		C:\Qt\5.6\msvc2013_64\include\QtCore\qcoreapplication.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qmath.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qmetaobject.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qmimedata.h \
@@ -800,6 +763,7 @@ debug\MainWindow.obj: ..\LinuxProject1\MainWindow.cpp ../LinuxProject1/MainWindo
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qlinkedlist.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qmessageauthenticationcode.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qqueue.h \
+		C:\Qt\5.6\msvc2013_64\include\QtCore\qregularexpression.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qscopedvaluerollback.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qstack.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\qtextboundaryfinder.h \
@@ -813,6 +777,7 @@ debug\MainWindow.obj: ..\LinuxProject1\MainWindow.cpp ../LinuxProject1/MainWindo
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qaccessibleobject.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qaccessibleplugin.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qbitmap.h \
+		C:\Qt\5.6\msvc2013_64\include\QtGui\qicon.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qiconengine.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qiconengineplugin.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qimageiohandler.h \
@@ -827,6 +792,8 @@ debug\MainWindow.obj: ..\LinuxProject1\MainWindow.cpp ../LinuxProject1/MainWindo
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qdrag.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qgenericplugin.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qgenericpluginfactory.h \
+		C:\Qt\5.6\msvc2013_64\include\QtGui\qguiapplication.h \
+		C:\Qt\5.6\msvc2013_64\include\QtGui\qinputmethod.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qoffscreensurface.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qsurface.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qsurfaceformat.h \
@@ -898,13 +865,51 @@ debug\MainWindow.obj: ..\LinuxProject1\MainWindow.cpp ../LinuxProject1/MainWindo
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qtextlist.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qtexttable.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qdesktopservices.h \
+		C:\Qt\5.6\msvc2013_64\include\QtGui\qvalidator.h \
 		C:\Qt\5.6\msvc2013_64\include\QtGui\qtguiversion.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\QTimer \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\QDateTime \
+		../LinuxProject1/MainWindow.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QMainWindow \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qmainwindow.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qtabwidget.h \
+		ui_MainWindow.h \
+		C:\Qt\5.6\msvc2013_64\include\QtCore\QVariant \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QAction \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qaction.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qactiongroup.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QApplication \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qapplication.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qdesktopwidget.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QButtonGroup \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qbuttongroup.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QHeaderView \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qheaderview.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qabstractitemview.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qabstractitemdelegate.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qstyleoption.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qabstractspinbox.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qslider.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qabstractslider.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qstyle.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qtabbar.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qrubberband.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QMenuBar \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qmenubar.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qmenu.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QPushButton \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qpushbutton.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qabstractbutton.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QStatusBar \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qstatusbar.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QToolBar \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qtoolbar.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QWidget \
 		../LinuxProject1/statustextupdater.h \
 		C:\Qt\5.6\msvc2013_64\include\QtCore\QString \
 		../LinuxProject1/manuelstyring.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QDialog
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QDialog \
+		../LinuxProject1/fifoqueue.h
 
 debug\statustextupdater.obj: ..\LinuxProject1\statustextupdater.cpp ../LinuxProject1/MainWindow.h \
 		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QMainWindow \
@@ -1161,9 +1166,13 @@ debug\manuelstyring.obj: ..\LinuxProject1\manuelstyring.cpp ../LinuxProject1/man
 		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QPushButton \
 		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qpushbutton.h \
 		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qabstractbutton.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QMessageBox \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\qmessagebox.h \
-		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QWidget
+		..\LinuxProject1\broadcastreceiver.h \
+		C:\Qt\5.6\msvc2013_64\include\QtWidgets\QWidget \
+		..\LinuxProject1\broadcastsender.h \
+		../LinuxProject1/fifoqueue.h \
+		C:\Qt\5.6\msvc2013_64\include\QtGui\QKeyEvent
+
+debug\fifoqueue.obj: ..\LinuxProject1\fifoqueue.cpp ../LinuxProject1/fifoqueue.h
 
 debug\qrc_images.obj: debug\qrc_images.cpp 
 

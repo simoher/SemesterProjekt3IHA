@@ -109,7 +109,7 @@ public:
 ""));
         pushButton_2 = new QPushButton(centralWidget);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(430, 550, 231, 51));
+        pushButton_2->setGeometry(QRect(420, 550, 241, 51));
         pushButton_2->setFont(font2);
         pushButton_2->setStyleSheet(QLatin1String("background-color: rgba(255, 255, 255, 0);\n"
 "color: rgb(130, 130, 130)\n"
@@ -172,8 +172,8 @@ public:
         label_nondynamic->setText(QApplication::translate("MainWindow", "Status Messages:", 0));
         label_dynamic->setText(QApplication::translate("MainWindow", "Dynamic Label", 0));
         pushButton->setText(QApplication::translate("MainWindow", "Self Test", 0));
-        pushButton_2->setText(QApplication::translate("MainWindow", "Manuel Styring", 0));
-        pushButton_3->setText(QApplication::translate("MainWindow", "Automatisk Tracking", 0));
+        pushButton_2->setText(QApplication::translate("MainWindow", "Manuel Control", 0));
+        pushButton_3->setText(QApplication::translate("MainWindow", "Automatic Tracking", 0));
 #ifndef QT_NO_TOOLTIP
         Digital_clock->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Ur</span></p></body></html>", 0));
 #endif // QT_NO_TOOLTIP

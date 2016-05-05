@@ -1,6 +1,8 @@
 #include "manuelstyring.h"
 #include "ui_manuelstyring.h"
+#include "fifoqueue.h"
 #include <QKeyEvent>
+
 
 
 manuelStyring::manuelStyring(QWidget *parent) :
@@ -25,7 +27,7 @@ void manuelStyring::on_pushButton_clicked()
 
 void manuelStyring::keyPressEvent(QKeyEvent *e)
 {
-    QString text = ui->pushButton->text();
+    QString text;
     text += char(e->key());
     ui->pushButton->setText(text);
 }

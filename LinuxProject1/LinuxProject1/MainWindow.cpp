@@ -9,8 +9,6 @@
 #include "ui_MainWindow.h"
 #include "statustextupdater.h"
 #include "manuelstyring.h"
-#include "broadcastreceiver.h"
-#include "broadcastsender.h"
 #include "fifoqueue.h"
 statusTextUpdater updateObjekt;
 

@@ -4,6 +4,7 @@
 
 QT       += core gui
 
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = LinuxProject1
@@ -14,14 +15,10 @@ TEMPLATE = app
 SOURCES   += LinuxProject1.cpp MainWindow.cpp \
     statustextupdater.cpp \
     manuelstyring.cpp \
-    broadcastreceiver.cpp \
-    broadcastsender.cpp \
     fifoqueue.cpp
 HEADERS   += MainWindow.h \
     statustextupdater.h \
     manuelstyring.h \
-    broadcastreceiver.h \
-    broadcastsender.h \
     fifoqueue.h
 FORMS     += MainWindow.ui \
     manuelstyring.ui
